@@ -11,17 +11,17 @@ class Reddit:
         j = json.loads(r.content)
         return pd.DataFrame(j)
 
-    def wsb_mentions(self, ticker=""):
+    def wsb_mentions(self, ticker="", days=1):
         if not ticker:
-            r = requests.get(f"{BASE_URL}/wsb_mentions")
+            r = requests.get(f"{BASE_URL}/wsb_mentions/?days={str(days)}")
         else:
             r = requests.get(f"{BASE_URL}/wsb_mentions/{ticker}")
         j = json.loads(r.content)
         return pd.DataFrame(j)
 
-    def wsb_options(self, ticker=""):
+    def wsb_options(self, ticker="", days=1):
         if not ticker:
-            r = requests.get(f"{BASE_URL}/wsb_options")
+            r = requests.get(f"{BASE_URL}/wsb_options/?days={str(days)}")
         else:
             r = requests.get(f"{BASE_URL}/wsb_options/{ticker}")
         j = json.loads(r.content)

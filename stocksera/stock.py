@@ -16,9 +16,9 @@ class Stock:
         j = json.loads(r.content)
         return pd.DataFrame(j)
 
-    def insider_trading(self, ticker=""):
+    def insider_trading(self, ticker="", limit=500):
         if not ticker:
-            r = requests.get(f"{BASE_URL}/latest_insider")
+            r = requests.get(f"{BASE_URL}/latest_insider/?limit={str(limit)}")
         else:
             r = requests.get(f"{BASE_URL}/insider_trading/{ticker}")
         j = json.loads(r.content)
