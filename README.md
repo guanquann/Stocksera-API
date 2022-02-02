@@ -1,0 +1,98 @@
+# Stocksera API
+
+This is the official API for Stocksera. Visit stocksera at https://stocksera.pythonanywhere.com.
+
+#### Installation
+The package can easily be installed in your terminal by entering
+```
+pip install stocksera
+```
+
+### Usage
+
+
+#### Import the package
+```
+import stocksera
+```
+
+#### Get data from Reddit
+```
+reddit = stocksera.Reddit()
+
+# Get total number of mentions on wallstreetbets
+df = reddit.wsb_mentions()
+
+# Get number of mentions of a stock overtime on wallstreetbets
+df = reddit.wsb_mentions(ticker="AAPL")
+
+# Get total number of puts/calls mentions on wallstreetbets
+df = reddit.wsb_options()
+
+# Get number of puts/calls mentions of a stock overtime on wallstreetbets
+df = reddit.wsb_options(ticker="AAPL")
+
+# Get subreddit count on Reddit
+df = reddit.subreddit(ticker="GME")
+```
+
+#### Get stocks related data
+```
+stock = stocksera.Stock()
+
+# Get SEC fillings of a stock
+df = stock.sec_fillings(ticker="AAPL")
+
+# Get news and sentiment of a stock
+df = stock.news_sentiment(ticker="AAPL")
+
+# Get recent insider trading of all tickers
+df = stock.insider_trading()
+
+# Get insider trading of a stock
+df = stock.insider_trading(ticker="AAPL")
+
+# Get recent insider trading analysis
+df = stock.latest_insider_trading_summary()
+
+# Get stocks with recent consistenly high FTD
+df = stock.ftd()
+
+# Get FTD of a stock
+df = stock.ftd(ticker="AAPL")
+
+# Get earnings calendar of stocks
+df = stock.earnings_calendar()
+
+```
+
+#### Get government trades data
+```
+government = stocksera.Government()
+
+# Get senate trades
+df = government.senate()
+
+# Get house trades
+df = government.house()
+```
+
+#### Get economic data
+```
+economy = stocksera.Economy()
+
+# Get reverse repo
+df = government.reverse_repo()
+
+# Get daily treasury
+df = government.daily_treasury()
+
+# Get inflation
+df = government.inflation()
+
+# Get initial jobless claims
+df = government.jobless_claims()
+
+# Get retail sales
+df = government.retail_sales()
+```

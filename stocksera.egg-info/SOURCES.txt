@@ -1,0 +1,14 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+stocksera/__init__.py
+stocksera/economy.py
+stocksera/government.py
+stocksera/reddit.py
+stocksera/stock.py
+stocksera.egg-info/PKG-INFO
+stocksera.egg-info/SOURCES.txt
+stocksera.egg-info/dependency_links.txt
+stocksera.egg-info/requires.txt
+stocksera.egg-info/top_level.txt
