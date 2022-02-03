@@ -7,7 +7,7 @@ Installation
 
 The package can easily be installed in your terminal by entering
 
-.. code-block::
+.. code-block:: bash
 
    pip install stocksera
 
@@ -96,7 +96,17 @@ Get government trades data
    # Get house trades of a specific ticker
    df = government.house(ticker="AAPL")
 
-Get Economic Data
+Get ETF data
+==================
+
+.. code-block::
+
+    etf = stocksera.ETF()
+
+    # Get Jim Cramer trades
+    df = etf.jim_cramer()
+
+Get economic data
 ==================
 
 .. code-block::
