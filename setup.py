@@ -11,7 +11,7 @@ URL = 'https://github.com/guanquann/Stocksera-API'
 
 LICENSE = 'The MIT License (MIT)'
 DESCRIPTION = 'Official Stocksera API'
-LONG_DESCRIPTION = (HERE / "README.md").read_text()
+LONG_DESCRIPTION = (HERE / "README.rst").read_text()
 LONG_DESC_TYPE = "text/markdown"
 
 INSTALL_REQUIRES = ['pandas', 'requests']

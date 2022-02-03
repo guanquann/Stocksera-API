@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: stocksera
-Version: 0.1.13
+Version: 0.1.14
 Summary: Official Stocksera API
 Home-page: https://github.com/guanquann/Stocksera-API
 Author: Guan Quan
@@ -40,13 +40,13 @@ import stocksera
 reddit = stocksera.Reddit()
 
 # Get total number of mentions on wallstreetbets
-df = reddit.wsb_mentions()
+df = reddit.wsb_mentions(days=1)
 
 # Get number of mentions of a stock overtime on wallstreetbets
 df = reddit.wsb_mentions(ticker="AAPL")
 
 # Get total number of puts/calls mentions on wallstreetbets
-df = reddit.wsb_options()
+df = reddit.wsb_options(days=1)
 
 # Get number of puts/calls mentions of a stock overtime on wallstreetbets
 df = reddit.wsb_options(ticker="AAPL")
@@ -66,7 +66,7 @@ df = stock.sec_fillings(ticker="AAPL")
 df = stock.news_sentiment(ticker="AAPL")
 
 # Get recent insider trading of all tickers
-df = stock.insider_trading()
+df = stock.insider_trading(limit=500)
 
 # Get insider trading of a stock
 df = stock.insider_trading(ticker="AAPL")
@@ -82,23 +82,34 @@ df = stock.ftd(ticker="AAPL")
 
 # Get earnings calendar of stocks
 df = stock.earnings_calendar()
-
 ```
 
 #### Get government trades data
 ```
 government = stocksera.Government()
 
-# Get senate trades
+# Get all senate trades
 df = government.senate()
 
-# Get house trades
+# Get senate trades of a specific person
+df = government.senate(name="Thomas H Tuberville")
+
+# Get senate trades of a specific ticker
+df = government.senate(ticker="AAPL")
+
+# Get all house trades
 df = government.house()
+
+# Get house trades of a specific person
+df = government.house(name="Hon. Nancy Pelosi")
+
+# Get house trades of a specific ticker
+df = government.house(ticker="AAPL")
 ```
 
 #### Get economic data
 ```
-economy = stocksera.Economy()
+government = stocksera.Economy()
 
 # Get reverse repo
 df = government.reverse_repo()
