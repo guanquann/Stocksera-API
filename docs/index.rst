@@ -1,6 +1,6 @@
 Stockera API
 =============
-This is the official API for Stocksera. Visit stocksera at https://stocksera.pythonanywhere.com.
+This is the official API for Stocksera. Visit Stocksera at https://stocksera.pythonanywhere.com.
 
 Installation
 =============
