@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 HERE = pathlib.Path(__file__).parent
 
-VERSION = '0.1.14'
+VERSION = '0.1.15'
 PACKAGE_NAME = 'stocksera'
 AUTHOR = 'Guan Quan'
 AUTHOR_EMAIL = 'stocksera@gmail.com.com'
@@ -11,7 +11,7 @@ URL = 'https://github.com/guanquann/Stocksera-API'
 
 LICENSE = 'The MIT License (MIT)'
 DESCRIPTION = 'Official Stocksera API'
-LONG_DESCRIPTION = (HERE / "README.rst").read_text()
+LONG_DESCRIPTION = (HERE / "README.md").read_text()
 LONG_DESC_TYPE = "text/markdown"
 
 INSTALL_REQUIRES = ['pandas', 'requests']

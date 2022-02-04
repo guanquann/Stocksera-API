@@ -4,6 +4,7 @@ pyproject.toml
 setup.py
 stocksera/__init__.py
 stocksera/economy.py
+stocksera/etf.py
 stocksera/government.py
 stocksera/reddit.py
 stocksera/stock.py

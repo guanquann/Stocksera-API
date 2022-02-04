@@ -1,17 +1,26 @@
 import requests
-import json
 import pandas as pd
 
-BASE_URL = "https://stocksera.pythonanywhere.com/api/"
+BASE_URL = "https://stocksera.pythonanywhere.com/api"
 
 
 class Government:
     def senate(self, name="", ticker=""):
-        r = requests.get(f"{BASE_URL}/senate_trades/?name={name}&ticker={ticker}")
-        j = json.loads(r.content)
-        return pd.DataFrame(j)
+        r = requests.get(f"{BASE_URL}/government/senate/?name={name}&ticker={ticker}")
+        content = r.json()
+        if ticker:
+            content = content[ticker]
+        elif name:
+            content = content[name]
+        return pd.DataFrame(content)
 
-    def house(self, name="", ticker=""):
-        r = requests.get(f"{BASE_URL}/house_trades/?name={name}&ticker={ticker}")
-        j = json.loads(r.content)
-        return pd.DataFrame(j)
+    def house(self, name="", ticker="", state=""):
+        r = requests.get(f"{BASE_URL}/government/house/?name={name}&ticker={ticker}&state={state}")
+        content = r.json()
+        if ticker:
+            content = content[ticker]
+        elif name:
+            content = content[name]
+        elif state:
+            content = content[state]
+        return pd.DataFrame(content)

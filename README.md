@@ -1,15 +1,12 @@
 # Stocksera API
 
-This is the official API for Stocksera. Visit stocksera at https://stocksera.pythonanywhere.com.
+This is the official API for Stocksera. Visit Stocksera at https://github.com/guanquann/Stocksera.
 
 #### Installation
 The package can easily be installed in your terminal by entering
 ```
 pip install stocksera
 ```
-
-### Usage
-
 
 #### Import the package
 ```
@@ -86,24 +83,38 @@ df = government.house(name="Hon. Nancy Pelosi")
 
 # Get house trades of a specific ticker
 df = government.house(ticker="AAPL")
+
+# Get house trades of a state
+df = government.house(state="TX")
+```
+
+#### Get ETF data
+```
+etf = stocksera.ETF()
+
+# Get market indices
+df = etf.market_summary(market_type="snp500")
+
+# Get Jim Cramer trades
+df = etf.jim_cramer()
 ```
 
 #### Get economic data
 ```
-government = stocksera.Economy()
+economy = stocksera.Economy()
 
 # Get reverse repo
-df = government.reverse_repo()
+df = economy.reverse_repo()
 
 # Get daily treasury
-df = government.daily_treasury()
+df = economy.daily_treasury()
 
 # Get inflation
-df = government.inflation()
+df = economy.inflation()
 
 # Get initial jobless claims
-df = government.jobless_claims()
+df = economy.jobless_claims()
 
 # Get retail sales
-df = government.retail_sales()
+df = economy.retail_sales()
 ```

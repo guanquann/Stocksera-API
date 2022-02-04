@@ -2,7 +2,7 @@ import requests
 import json
 import pandas as pd
 
-BASE_URL = "https://stocksera.pythonanywhere.com/api/"
+BASE_URL = "https://stocksera.pythonanywhere.com/api"
 
 
 class Stock:
