@@ -1,5 +1,7 @@
 # Stocksera API
 
+[![Downloads](https://pepy.tech/badge/stocksera)](https://pepy.tech/project/stocksera)
+
 This is the official API for Stocksera. Visit Stocksera at https://github.com/guanquann/Stocksera.
 
 #### Installation
@@ -21,16 +23,13 @@ reddit = stocksera.Reddit()
 df = reddit.wsb_mentions(days=1)
 
 # Get number of mentions of a stock overtime on wallstreetbets
-df = reddit.wsb_mentions(ticker="AAPL")
+df = reddit.wsb_mentions(days=1, ticker="AAPL")
 
 # Get total number of puts/calls mentions on wallstreetbets
 df = reddit.wsb_options(days=1)
 
-# Get number of puts/calls mentions of a stock overtime on wallstreetbets
-df = reddit.wsb_options(ticker="AAPL")
-
 # Get subreddit count on Reddit
-df = reddit.subreddit(ticker="GME")
+df = reddit.subreddit(days=50, ticker="GME")
 ```
 
 #### Get stocks related data
@@ -79,7 +78,7 @@ df = government.senate(ticker="AAPL")
 df = government.house()
 
 # Get house trades of a specific person
-df = government.house(name="Hon. Nancy Pelosi")
+df = government.house(name="Nancy Pelosi")
 
 # Get house trades of a specific ticker
 df = government.house(ticker="AAPL")
@@ -96,7 +95,7 @@ etf = stocksera.ETF()
 df = etf.market_summary(market_type="snp500")
 
 # Get Jim Cramer trades
-df = etf.jim_cramer()
+df = etf.jim_cramer(ticker="AAPL", segment="featured", call="buy")
 ```
 
 #### Get economic data
@@ -104,17 +103,17 @@ df = etf.jim_cramer()
 economy = stocksera.Economy()
 
 # Get reverse repo
-df = economy.reverse_repo()
+df = economy.reverse_repo(days=100)
 
 # Get daily treasury
-df = economy.daily_treasury()
+df = economy.daily_treasury(days=100)
 
 # Get inflation
 df = economy.inflation()
 
 # Get initial jobless claims
-df = economy.jobless_claims()
+df = economy.jobless_claims(days=100)
 
 # Get retail sales
-df = economy.retail_sales()
+df = economy.retail_sales(days=100)
 ```

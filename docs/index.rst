@@ -29,16 +29,13 @@ Get data from Reddit
     df = reddit.wsb_mentions(days=1)
 
     # Get number of mentions of a stock overtime on wallstreetbets
-    df = reddit.wsb_mentions(ticker="AAPL")
+    df = reddit.wsb_mentions(days=1, ticker="AAPL")
 
     # Get total number of puts/calls mentions on wallstreetbets
     df = reddit.wsb_options(days=1)
 
-    # Get number of puts/calls mentions of a stock overtime on wallstreetbets
-    df = reddit.wsb_options(ticker="AAPL")
-
     # Get subreddit count on Reddit
-    df = reddit.subreddit(ticker="GME")
+    df = reddit.subreddit(days=50, ticker="GME")
 
 Get stocks related data
 ========================
@@ -91,7 +88,7 @@ Get government trades data
     df = government.house()
 
     # Get house trades of a specific person
-    df = government.house(name="Hon. Nancy Pelosi")
+    df = government.house(name="Nancy Pelosi")
 
     # Get house trades of a specific ticker
     df = government.house(ticker="AAPL")
@@ -110,26 +107,26 @@ Get ETF data
     df = etf.market_summary(market_type="snp500")
 
     # Get Jim Cramer trades
-    df = etf.jim_cramer()
+    df = etf.jim_cramer(ticker="AAPL", segment="featured", call="buy")
 
 Get economic data
 ==================
 
 .. code-block::
 
-   economy = stocksera.Economy()
+    economy = stocksera.Economy()
 
-   # Get reverse repo
-   df = economy.reverse_repo()
+    # Get reverse repo
+    df = economy.reverse_repo(days=100)
 
-   # Get daily treasury
-   df = economy.daily_treasury()
+    # Get daily treasury
+    df = economy.daily_treasury(days=100)
 
-   # Get inflation
-   df = economy.inflation()
+    # Get inflation
+    df = economy.inflation()
 
-   # Get initial jobless claims
-   df = economy.jobless_claims()
+    # Get initial jobless claims
+    df = economy.jobless_claims(days=100)
 
-   # Get retail sales
-   df = economy.retail_sales()
+    # Get retail sales
+    df = economy.retail_sales(days=100)

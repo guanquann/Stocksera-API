@@ -1,5 +1,5 @@
-import requests
 import json
+import requests
 import pandas as pd
 
 BASE_URL = "https://stocksera.pythonanywhere.com/api"
