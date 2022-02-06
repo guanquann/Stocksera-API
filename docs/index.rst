@@ -18,24 +18,69 @@ Import the package
 
     import stocksera
 
-Get data from Reddit
-=====================
+Get data from social media
+===========================
 
 .. code-block::
 
-    reddit = stocksera.Reddit()
+    social = stocksera.Social()
 
-    # Get total number of mentions on wallstreetbets
-    df = reddit.wsb_mentions(days=1)
+Get total mentions/ mentions of a stock on wallstreetbets
+**********************************************************
 
-    # Get number of mentions of a stock overtime on wallstreetbets
-    df = reddit.wsb_mentions(days=1, ticker="AAPL")
+.. code-block::
 
-    # Get total number of puts/calls mentions on wallstreetbets
-    df = reddit.wsb_options(days=1)
+    df = social.wsb_mentions(days=1, ticker="AAPL")
 
-    # Get subreddit count on Reddit
-    df = reddit.subreddit(days=50, ticker="GME")
++---------+----------+---------+-----------------+
+| Params  | Required | Default | Description     |
++=========+==========+=========+=================+
+| days    | No       | 1       | number days ago |
++---------+----------+---------+-----------------+
+| ticker  | No       |         | stock symbol    |
++---------+----------+---------+-----------------+
+
+Get total number of puts/calls mentions on wallstreetbets
+***********************************************************
+
+.. code-block::
+
+    df = social.wsb_options(days=1)
+
+
++---------+----------+---------+-----------------+
+| Params  | Required | Default | Description     |
++=========+==========+=========+=================+
+| days    | No       | 1       | number days ago |
++---------+----------+---------+-----------------+
+
+Get subreddit count on Reddit
+******************************
+
+.. code-block::
+
+    df = social.subreddit(days=50, ticker="GME")
+
++---------+----------+---------+-----------------+
+| Params  | Required | Default | Description     |
++=========+==========+=========+=================+
+| days    | No       | 100     | number days ago |
++---------+----------+---------+-----------------+
+| ticker  | Yes      | GME     | stock symbol    |
++---------+----------+---------+-----------------+
+
+Get current trending stocks/ ranking and watchlist count of a stock in stocktwits
+***********************************************************************************
+
+.. code-block::
+
+    df = social.stocktwits(ticker="AAPL")
+
++---------+----------+---------+-----------------+
+| Params  | Required | Default | Description     |
++=========+==========+=========+=================+
+| ticker  | No       |         | stock symbol    |
++---------+----------+---------+-----------------+
 
 Get stocks related data
 ========================
@@ -44,28 +89,85 @@ Get stocks related data
 
     stock = stocksera.Stock()
 
-    # Get SEC fillings of a stock
+Get SEC fillings of a stock
+****************************
+
+.. code-block::
+
     df = stock.sec_fillings(ticker="AAPL")
 
-    # Get news and sentiment of a stock
++---------+----------+---------+-----------------+
+| Params  | Required | Default | Description     |
++=========+==========+=========+=================+
+| ticker  | Yes      | AAPL    | stock symbol    |
++---------+----------+---------+-----------------+
+
+Get news sentiment of a stock
+*******************************
+
+.. code-block::
+
     df = stock.news_sentiment(ticker="AAPL")
 
-    # Get recent insider trading of all tickers
-    df = stock.insider_trading(limit=500)
++---------+----------+---------+-----------------+
+| Params  | Required | Default | Description     |
++=========+==========+=========+=================+
+| ticker  | Yes      | AAPL    | stock symbol    |
++---------+----------+---------+-----------------+
 
-    # Get insider trading of a stock
-    df = stock.insider_trading(ticker="AAPL")
+Get recent insider trading of all tickers/ insider trading of a stock
+**********************************************************************
 
-    # Get recent insider trading analysis
+.. code-block::
+
+    df = stock.insider_trading(limit=500, ticker="AAPL")
+
++---------+----------+---------+-----------------+
+| Params  | Required | Default | Description     |
++=========+==========+=========+=================+
+| limit   | No       | 500     | last n records  |
++---------+----------+---------+-----------------+
+| ticker  | No       | AAPL    | number days ago |
++---------+----------+---------+-----------------+
+
+Get recent insider trading analysis
+************************************
+
+.. code-block::
+
     df = stock.latest_insider_trading_summary()
 
-    # Get stocks with recent consistenly high FTD
-    df = stock.ftd()
+Get stocks with high short volume/ short volume of a stock
+***********************************************************
 
-    # Get FTD of a stock
+.. code-block::
+
+    df = stock.short_volume(ticker="AAPL")
+
++---------+----------+---------+-----------------+
+| Params  | Required | Default | Description     |
++=========+==========+=========+=================+
+| ticker  | No       |         | stock symbol    |
++---------+----------+---------+-----------------+
+
+Get stocks with consistently high FTD/ FTD of a stock
+******************************************************
+
+.. code-block::
+
     df = stock.ftd(ticker="AAPL")
 
-    # Get earnings calendar of stocks
++---------+----------+---------+-----------------+
+| Params  | Required | Default | Description     |
++=========+==========+=========+=================+
+| ticker  | No       |         | stock symbol    |
++---------+----------+---------+-----------------+
+
+Get earnings calendar of stocks
+********************************
+
+.. code-block::
+
     df = stock.earnings_calendar()
 
 Get government trades data
@@ -75,26 +177,37 @@ Get government trades data
 
     government = stocksera.Government()
 
-    # Get all senate trades
-    df = government.senate()
+Get all senate trades/ trades of a specific person/ trades of a specific ticker
+********************************************************************************
 
-    # Get senate trades of a specific person
-    df = government.senate(name="Thomas H Tuberville")
+.. code-block::
 
-    # Get senate trades of a specific ticker
-    df = government.senate(ticker="AAPL")
+    df = government.senate(ticker="AAPL", name="Thomas H Tuberville")
 
-    # Get all house trades
-    df = government.house()
++---------+----------+---------+-----------------+
+| Params  | Required | Default | Description     |
++=========+==========+=========+=================+
+| ticker  | No       |         | stock symbol    |
++---------+----------+---------+-----------------+
+| name    | No       |         | name of person  |
++---------+----------+---------+-----------------+
 
-    # Get house trades of a specific person
-    df = government.house(name="Nancy Pelosi")
+Get all house trades/ trades of a specific person/ trades of a specific ticker
+********************************************************************************
 
-    # Get house trades of a specific ticker
-    df = government.house(ticker="AAPL")
+.. code-block::
 
-    # Get house trades of a state
-    df = government.house(state="TX")
+    df = government.house(ticker="AAPL", name="Nancy Pelosi", state="CA")
+
++---------+----------+---------+---------------------------+
+| Params  | Required | Default | Description               |
++=========+==========+=========+===========================+
+| ticker  | No       |         | stock symbol              |
++---------+----------+---------+---------------------------+
+| name    | No       |         | name of person            |
++---------+----------+---------+---------------------------+
+| state   | No       |         | 2 character district code |
++---------+----------+---------+---------------------------+
 
 Get ETF data
 ==================
@@ -103,11 +216,36 @@ Get ETF data
 
     etf = stocksera.ETF()
 
-    # Get market indices
+Get market indices
+*******************
+
+.. code-block::
+
     df = etf.market_summary(market_type="snp500")
 
-    # Get Jim Cramer trades
++--------------+----------+---------+--------------------------+
+| Params       | Required | Default | Description              |
++==============+==========+=========+==========================+
+| market_type  | Yes      | snp500  | snp500/nasdaq100/dia/wsb |
++--------------+----------+---------+--------------------------+
+
+
+Get Jim Cramer trades
+**********************
+
+.. code-block::
+
     df = etf.jim_cramer(ticker="AAPL", segment="featured", call="buy")
+
++---------+----------+---------+------------------------------------+
+| Params  | Required | Default | Description                        |
++=========+==========+=========+====================================+
+| ticker  | No       | all     | stock symbol                       |
++---------+----------+---------+------------------------------------+
+| segment | No       | all     | featured/discussed/lightning/guest |
++---------+----------+---------+------------------------------------+
+| call    | No       | all     | buy/positive/hold/negative/sell    |
++---------+----------+---------+------------------------------------+
 
 Get economic data
 ==================
@@ -116,17 +254,61 @@ Get economic data
 
     economy = stocksera.Economy()
 
-    # Get reverse repo
+Get reverse repo
+*****************
+
+.. code-block::
+
     df = economy.reverse_repo(days=100)
 
-    # Get daily treasury
++---------+----------+---------+-----------------+
+| Params  | Required | Default | Description     |
++=========+==========+=========+=================+
+| days    | No       | 100     | number days ago |
++---------+----------+---------+-----------------+
+
+Get daily treasury
+*******************
+
+.. code-block::
+
     df = economy.daily_treasury(days=100)
 
-    # Get inflation
++---------+----------+---------+-----------------+
+| Params  | Required | Default | Description     |
++=========+==========+=========+=================+
+| days    | No       | 100     | number days ago |
++---------+----------+---------+-----------------+
+
+Get inflation
+**************
+
+.. code-block::
+
     df = economy.inflation()
 
-    # Get initial jobless claims
+Get initial jobless claims
+***************************
+
+.. code-block::
+
     df = economy.jobless_claims(days=100)
 
-    # Get retail sales
++---------+----------+---------+-----------------+
+| Params  | Required | Default | Description     |
++=========+==========+=========+=================+
+| days    | No       | 100     | number days ago |
++---------+----------+---------+-----------------+
+
+Get retail sales
+*****************
+
+.. code-block::
+
     df = economy.retail_sales(days=100)
+
++---------+----------+---------+-----------------+
+| Params  | Required | Default | Description     |
++=========+==========+=========+=================+
+| days    | No       | 100     | number days ago |
++---------+----------+---------+-----------------+

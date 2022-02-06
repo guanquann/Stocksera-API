@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 HERE = pathlib.Path(__file__).parent
 
-VERSION = '0.1.17'
+VERSION = '0.1.18'
 PACKAGE_NAME = 'stocksera'
 AUTHOR = 'Guan Quan'
 AUTHOR_EMAIL = 'stocksera@gmail.com.com'

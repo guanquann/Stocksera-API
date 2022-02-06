@@ -10,12 +10,5 @@ class ETF:
         return pd.DataFrame(list(r.json().values())[0])
 
     def jim_cramer(self, ticker="", segment="", call=""):
-        url = f"{BASE_URL}/jim_cramer/"
-        if ticker:
-            url += f"{ticker}/"
-        if segment:
-            url += f"?segment={segment}&"
-        if call:
-            url += f"?call={call}&"
-        r = requests.get(url)
+        r = requests.get(f"{BASE_URL}/jim_cramer/{ticker}/?segment={segment}&call={call}")
         return pd.DataFrame(r.json())

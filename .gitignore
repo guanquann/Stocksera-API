@@ -6,3 +6,4 @@ venv/
 .vscode
 dist/
 docs/_build
+stocksera.egg-info
