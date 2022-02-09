@@ -61,11 +61,13 @@ stock = stocksera.Stock()
 
 ##### Get SEC fillings of a stock
 ```
-df = stock.sec_fillings(ticker="AAPL")
+df = stock.sec_fillings(ticker="AAPL", date_from="2022-01-01", date_to="2022-01-31")
 ```
-| Params  | Required | Default | Description     |
-| ------- | -------- | ------- | --------------- |
-| ticker  | Yes      | AAPL    | stock symbol    |
+| Params    | Required | Default | Description     |
+| --------- | -------- | ------- | --------------- |
+| ticker    | Yes      | AAPL    | stock symbol    |
+| date_from | No       |         | YYYY-MM-DD      |
+| date_to   | No       |         | YYYY-MM-DD      |
 
 ##### Get news sentiment of a stock
 ```
@@ -77,12 +79,15 @@ df = stock.news_sentiment(ticker="AAPL")
 
 ##### Get recent insider trading of all tickers/ insider trading of a stock
 ```
-df = stock.insider_trading(limit=500, ticker="AAPL")
+df = stock.insider_trading(limit=500, ticker="AAPL", date_from="2022-01-01", date_to="2022-01-31")
 ```
-| Params  | Required | Default | Description     |
-| ------- | -------- | ------- | --------------- |
-| limit   | No       | 500     | last n records  |
-| ticker  | No       | AAPL    | number days ago |
+
+| Params    | Required | Default | Description     |
+| --------- | -------- | ------- | --------------- |
+| limit     | No       | 500     | last n records  |
+| ticker    | No       | AAPL    | stock symbol    |
+| date_from | No       |         | YYYY-MM-DD      |
+| date_to   | No       |         | YYYY-MM-DD      |
 
 ##### Get recent insider trading analysis
 ```
@@ -91,24 +96,32 @@ df = stock.latest_insider_trading_summary()
 
 ##### Get stocks with high short volume/ short volume of a stock
 ```
-df = stock.short_volume(ticker="AAPL")
+df = stock.short_volume(ticker="AAPL", date_from="2022-01-01", date_to="2022-01-31")
 ```
-| Params  | Required | Default | Description     |
-| ------- | -------- | ------- | --------------- |
-| ticker  | No       |         | stock symbol    |
+| Params    | Required | Default | Description     |
+| --------- | -------- | ------- | --------------- |
+| ticker    | No       |         | stock symbol    |
+| date_from | No       |         | YYYY-MM-DD      |
+| date_to   | No       |         | YYYY-MM-DD      |
 
 ##### Get stocks with consistently high FTD/ FTD of a stock
 ```
-df = stock.ftd(ticker="AAPL")
+df = stock.ftd(ticker="AAPL", date_from="2022-01-01", date_to="2022-01-31")
 ```
-| Params  | Required | Default | Description     |
-| ------- | -------- | ------- | --------------- |
-| ticker  | No       |         | stock symbol    |
+| Params    | Required | Default | Description     |
+| --------- | -------- | ------- | --------------- |
+| ticker    | No       |         | stock symbol    |
+| date_from | No       |         | YYYY-MM-DD      |
+| date_to   | No       |         | YYYY-MM-DD      |
 
 ##### Get earnings calendar of stocks
 ```
-df = stock.earnings_calendar()
+df = stock.earnings_calendar(date_from="2022-01-01", date_to="2022-01-31")
 ```
+| Params    | Required | Default | Description     |
+| --------- | -------- | ------- | --------------- |
+| date_from | No       |         | YYYY-MM-DD      |
+| date_to   | No       |         | YYYY-MM-DD      |
 
 ### Get government trades data
 ```
@@ -117,22 +130,26 @@ government = stocksera.Government()
 
 #### Get all senate trades/ trades of a specific person/ trades of a specific ticker
 ```
-df = government.senate(ticker="AAPL", name="Thomas H Tuberville")
+df = government.senate(ticker="AAPL", name="Thomas H Tuberville", date_from="2022-01-01", date_to="2022-01-31")
 ```
-| Params  | Required | Default | Description     |
-| ------- | -------- | ------- | --------------- |
-| ticker  | No       |         | stock symbol    |
-| name    | No       |         | name of person  |
+| Params    | Required | Default | Description     |
+| --------- | -------- | ------- | --------------- |
+| ticker    | No       |         | stock symbol    |
+| name      | No       |         | name of person  |
+| date_from | No       |         | YYYY-MM-DD      |
+| date_to   | No       |         | YYYY-MM-DD      |
 
 #### Get all house trades/ trades of a specific person/ trades of a specific ticker
 ```
-df = government.house(ticker="AAPL", name="Nancy Pelosi", state="CA")
+df = government.house(ticker="AAPL", name="Nancy Pelosi", state="CA", date_from="2022-01-01", date_to="2022-01-31")
 ```
-| Params  | Required | Default | Description     |
-| ------- | -------- | ------- | --------------- |
-| ticker  | No       |         | stock symbol    |
-| name    | No       |         | name of person  |
-| state   | No       |         | district code   |
+| Params    | Required | Default | Description     |
+| --------- | -------- | ------- | --------------- |
+| ticker    | No       |         | stock symbol    |
+| name      | No       |         | name of person  |
+| state     | No       |         | district code   |
+| date_from | No       |         | YYYY-MM-DD      |
+| date_to   | No       |         | YYYY-MM-DD      |
 
 ### Get ETF data
 ```
