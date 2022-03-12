@@ -179,19 +179,17 @@ Get stocks with consistently high FTD/ FTD of a stock
 | date_to   | No       |         | YYYY-MM-DD      |
 +-----------+----------+---------+-----------------+
 
-Get earnings calendar of stocks
-********************************
+Get number of shares available and borrow fees of a stock
+**********************************************************
 
 .. code-block::
 
-    df = stock.earnings_calendar(date_from="2022-01-01", date_to="2022-01-31")
+    df = stock.borrowed_shares(ticker="AAPL")
 
 +-----------+----------+---------+-----------------+
 | Params    | Required | Default | Description     |
 +===========+==========+=========+=================+
-| date_from | No       |         | YYYY-MM-DD      |
-+-----------+----------+---------+-----------------+
-| date_to   | No       |         | YYYY-MM-DD      |
+| ticker    | No       | AAPL    | stock symbol    |
 +-----------+----------+---------+-----------------+
 
 Get government trades data
@@ -261,24 +259,6 @@ Get market indices
 | market_type  | Yes      | snp500  | snp500/nasdaq100/dia/wsb |
 +--------------+----------+---------+--------------------------+
 
-
-Get Jim Cramer trades
-**********************
-
-.. code-block::
-
-    df = etf.jim_cramer(ticker="AAPL", segment="featured", call="buy")
-
-+---------+----------+---------+------------------------------------+
-| Params  | Required | Default | Description                        |
-+=========+==========+=========+====================================+
-| ticker  | No       | all     | stock symbol                       |
-+---------+----------+---------+------------------------------------+
-| segment | No       | all     | featured/discussed/lightning/guest |
-+---------+----------+---------+------------------------------------+
-| call    | No       | all     | buy/positive/hold/negative/sell    |
-+---------+----------+---------+------------------------------------+
-
 Get economic data
 ==================
 
@@ -344,3 +324,86 @@ Get retail sales
 +=========+==========+=========+=================+
 | days    | No       | 100     | number days ago |
 +---------+----------+---------+-----------------+
+
+Get stock related news
+=======================
+
+.. code-block::
+
+    news = stocksera.News()
+
+Get recent market news
+***********************
+
+.. code-block::
+
+    df = news.market_news()
+
+Get trading halts
+******************
+
+.. code-block::
+
+    df = news.trading_halts()
+
+Get other interesting data
+===========================
+
+.. code-block::
+
+    discover = stocksera.Discover()
+
+Get Jim Cramer trades
+**********************
+
+.. code-block::
+
+    df = discover.jim_cramer(ticker="AAPL", segment="featured", call="buy")
+
++---------+----------+---------+------------------------------------+
+| Params  | Required | Default | Description                        |
++=========+==========+=========+====================================+
+| ticker  | No       | all     | stock symbol                       |
++---------+----------+---------+------------------------------------+
+| segment | No       | all     | featured/discussed/lightning/guest |
++---------+----------+---------+------------------------------------+
+| call    | No       | all     | buy/positive/hold/negative/sell    |
++---------+----------+---------+------------------------------------+
+
+Get stocks with high short interest
+************************************
+
+.. code-block::
+
+    df = discover.short_interest()
+
+Get stocks with low float
+***************************
+
+.. code-block::
+
+    df = discover.low_float()
+
+
+Get upcoming and past IPOs
+****************************
+
+.. code-block::
+
+    df = discover.ipo_calendar()
+
+
+Get earnings calendar of stocks
+********************************
+
+.. code-block::
+
+    df = discover.earnings_calendar(date_from="2022-01-01", date_to="2022-01-31")
+
++-----------+----------+---------+-----------------+
+| Params    | Required | Default | Description     |
++===========+==========+=========+=================+
+| date_from | No       |         | YYYY-MM-DD      |
++-----------+----------+---------+-----------------+
+| date_to   | No       |         | YYYY-MM-DD      |
++-----------+----------+---------+-----------------+

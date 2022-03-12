@@ -114,14 +114,13 @@ df = stock.ftd(ticker="AAPL", date_from="2022-01-01", date_to="2022-01-31")
 | date_from | No       |         | YYYY-MM-DD      |
 | date_to   | No       |         | YYYY-MM-DD      |
 
-##### Get earnings calendar of stocks
+##### Get number of shares available and borrow fees of a stock
 ```
-df = stock.earnings_calendar(date_from="2022-01-01", date_to="2022-01-31")
+df = stock.borrowed_shares(ticker="AAPL")
 ```
 | Params    | Required | Default | Description     |
 | --------- | -------- | ------- | --------------- |
-| date_from | No       |         | YYYY-MM-DD      |
-| date_to   | No       |         | YYYY-MM-DD      |
+| ticker    | No       | AAPL    | stock symbol    |
 
 ### Get government trades data
 ```
@@ -164,18 +163,6 @@ df = etf.market_summary(market_type="snp500")
 | -------      | -------- | ------- | -------------------------|
 | market_type  | Yes      | snp500  | snp500/nasdaq100/dia/wsb |
 
-
-##### Get Jim Cramer trades
-```
-df = etf.jim_cramer(ticker="AAPL", segment="featured", call="buy")
-```
-
-| Params  | Required | Default | Description                                              |
-| ------- | -------- | ------- | ---------------------------------- |
-| ticker  | No       | all     | stock symbol                       |
-| segment | No       | all     | featured/discussed/lightning/guest |
-| call    | No       | all     | buy/positive/hold/negative/sell    |
-
 ### Get economic data
 ```
 economy = stocksera.Economy()
@@ -217,3 +204,58 @@ df = economy.retail_sales(days=100)
 | Params  | Required | Default | Description     |
 | ------- | -------- | ------- | --------------- |
 | days    | No       | 100     | number days ago |
+
+### Get stock related news
+```
+news = stocksera.News()
+```
+
+##### Get recent market news
+```
+df = news.market_news()
+```
+
+##### Get trading halts
+```
+df = news.trading_halts()
+```
+
+### Get other interesting data
+```
+discover = stocksera.Discover()
+```
+
+##### Get Jim Cramer trades
+```
+df = discover.jim_cramer(ticker="AAPL", segment="featured", call="buy")
+```
+
+| Params  | Required | Default | Description                        |
+| ------- | -------- | ------- | ---------------------------------- |
+| ticker  | No       | all     | stock symbol                       |
+| segment | No       | all     | featured/discussed/lightning/guest |
+| call    | No       | all     | buy/positive/hold/negative/sell    |
+
+##### Get stocks with high short interest
+```
+df = discover.short_interest()
+```
+
+##### Get stocks with low float
+```
+df = discover.low_float()
+```
+
+##### Get upcoming and past IPOs
+```
+df = discover.ipo_calendar()
+```
+
+##### Get earnings calendar of stocks
+```
+df = discover.earnings_calendar(date_from="2022-01-01", date_to="2022-01-31")
+```
+| Params    | Required | Default | Description     |
+| --------- | -------- | ------- | --------------- |
+| date_from | No       |         | YYYY-MM-DD      |
+| date_to   | No       |         | YYYY-MM-DD      |

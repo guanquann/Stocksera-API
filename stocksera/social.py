@@ -13,7 +13,7 @@ class Social:
         return pd.DataFrame(data)
 
     def wsb_mentions(self, ticker="", days=1):
-        url = f"{BASE_URL}/wsb_mentions/"
+        url = f"{BASE_URL}/reddit/wsb/"
         if ticker:
             url += f"{ticker}/"
         if days:
