@@ -1,6 +1,7 @@
 Stockera API
 =============
 This is the official API for Stocksera. Visit Stocksera at https://github.com/guanquann/Stocksera.
+Sign up for free Stocksera API at https://stocksera.pythonanywhere.com/accounts/developers.
 
 Installation
 =============
@@ -17,20 +18,19 @@ Import the package
 .. code-block::
 
     import stocksera
+    
+    # Sign up for free Stocksera API at https://stocksera.pythonanywhere.com/accounts/developers/
+    client = stocksera.Client(api_key="YOUR API KEY")
 
 Get data from social media
 ===========================
-
-.. code-block::
-
-    social = stocksera.Social()
 
 Get total mentions/ mentions of a stock on wallstreetbets
 **********************************************************
 
 .. code-block::
 
-    df = social.wsb_mentions(days=1, ticker="AAPL")
+    data = client.wsb_mentions(days=1, ticker="AAPL")
 
 +---------+----------+---------+-----------------+
 | Params  | Required | Default | Description     |
@@ -45,7 +45,7 @@ Get total number of puts/calls mentions on wallstreetbets
 
 .. code-block::
 
-    df = social.wsb_options(days=1)
+    data = client.wsb_options(days=1)
 
 
 +---------+----------+---------+-----------------+
@@ -59,7 +59,7 @@ Get subreddit count on Reddit
 
 .. code-block::
 
-    df = social.subreddit(days=50, ticker="GME")
+    data = client.subreddit(days=50, ticker="GME")
 
 +---------+----------+---------+-----------------+
 | Params  | Required | Default | Description     |
@@ -74,7 +74,7 @@ Get current trending stocks/ ranking and watchlist count of a stock in stocktwit
 
 .. code-block::
 
-    df = social.stocktwits(ticker="AAPL")
+    data = client.stocktwits(ticker="AAPL")
 
 +---------+----------+---------+-----------------+
 | Params  | Required | Default | Description     |
@@ -85,16 +85,12 @@ Get current trending stocks/ ranking and watchlist count of a stock in stocktwit
 Get stocks related data
 ========================
 
-.. code-block::
-
-    stock = stocksera.Stock()
-
 Get SEC fillings of a stock
 ****************************
 
 .. code-block::
 
-    df = stock.sec_fillings(ticker="AAPL", date_from="2022-01-01", date_to="2022-01-31")
+    data = client.sec_fillings(ticker="AAPL", date_from="2022-01-01", date_to="2022-01-31")
 
 +-----------+----------+---------+-----------------+
 | Params    | Required | Default | Description     |
@@ -111,7 +107,7 @@ Get news sentiment of a stock
 
 .. code-block::
 
-    df = stock.news_sentiment(ticker="AAPL")
+    data = client.news_sentiment(ticker="AAPL")
 
 +---------+----------+---------+-----------------+
 | Params  | Required | Default | Description     |
@@ -124,7 +120,7 @@ Get recent insider trading of all tickers/ insider trading of a stock
 
 .. code-block::
 
-    df = stock.insider_trading(limit=500, ticker="AAPL", date_from="2022-01-01", date_to="2022-01-31")
+    data = client.insider_trading(limit=500, ticker="AAPL", date_from="2022-01-01", date_to="2022-01-31")
 
 +-----------+----------+---------+-----------------+
 | Params    | Required | Default | Description     |
@@ -143,14 +139,14 @@ Get recent insider trading analysis
 
 .. code-block::
 
-    df = stock.latest_insider_trading_summary()
+    data = client.latest_insider_trading_summary()
 
 Get stocks with high short volume/ short volume of a stock
 ***********************************************************
 
 .. code-block::
 
-    df = stock.short_volume(ticker="AAPL", date_from="2022-01-01", date_to="2022-01-31")
+    data = client.short_volume(ticker="AAPL", date_from="2022-01-01", date_to="2022-01-31")
 
 +-----------+----------+---------+-----------------+
 | Params    | Required | Default | Description     |
@@ -167,7 +163,7 @@ Get stocks with consistently high FTD/ FTD of a stock
 
 .. code-block::
 
-    df = stock.ftd(ticker="AAPL", date_from="2022-01-01", date_to="2022-01-31")
+    data = client.ftd(ticker="AAPL", date_from="2022-01-01", date_to="2022-01-31")
 
 +-----------+----------+---------+-----------------+
 | Params    | Required | Default | Description     |
@@ -184,7 +180,7 @@ Get number of shares available and borrow fees of a stock
 
 .. code-block::
 
-    df = stock.borrowed_shares(ticker="AAPL")
+    data = client.borrowed_shares(ticker="AAPL")
 
 +-----------+----------+---------+-----------------+
 | Params    | Required | Default | Description     |
@@ -195,16 +191,12 @@ Get number of shares available and borrow fees of a stock
 Get government trades data
 ===========================
 
-.. code-block::
-
-    government = stocksera.Government()
-
 Get all senate trades/ trades of a specific person/ trades of a specific ticker
 ********************************************************************************
 
 .. code-block::
 
-    df = government.senate(ticker="AAPL", name="Thomas H Tuberville", date_from="2022-01-01", date_to="2022-01-31")
+    data = client.senate(ticker="AAPL", name="Thomas H Tuberville", date_from="2022-01-01", date_to="2022-01-31")
 
 +-----------+----------+---------+-----------------+
 | Params    | Required | Default | Description     |
@@ -223,7 +215,7 @@ Get all house trades/ trades of a specific person/ trades of a specific ticker
 
 .. code-block::
 
-    df = government.house(ticker="AAPL", name="Nancy Pelosi", state="CA", date_from="2022-01-01", date_to="2022-01-31")
+    data = client.house(ticker="AAPL", name="Nancy Pelosi", state="CA", date_from="2022-01-01", date_to="2022-01-31")
 
 +-----------+----------+---------+---------------------------+
 | Params    | Required | Default | Description               |
@@ -335,30 +327,22 @@ Get stock related news
 Get recent market news
 ***********************
 
-.. code-block::
-
-    df = news.market_news()
-
 Get trading halts
 ******************
 
 .. code-block::
 
-    df = news.trading_halts()
+    df = client.trading_halts()
 
 Get other interesting data
 ===========================
-
-.. code-block::
-
-    discover = stocksera.Discover()
 
 Get Jim Cramer trades
 **********************
 
 .. code-block::
 
-    df = discover.jim_cramer(ticker="AAPL", segment="featured", call="buy")
+    data = client.jim_cramer(ticker="AAPL", segment="featured", call="buy")
 
 +---------+----------+---------+------------------------------------+
 | Params  | Required | Default | Description                        |
@@ -375,14 +359,14 @@ Get stocks with high short interest
 
 .. code-block::
 
-    df = discover.short_interest()
+    data = client.short_interest()
 
 Get stocks with low float
 ***************************
 
 .. code-block::
 
-    df = discover.low_float()
+    data = client.low_float()
 
 
 Get upcoming and past IPOs
@@ -390,7 +374,7 @@ Get upcoming and past IPOs
 
 .. code-block::
 
-    df = discover.ipo_calendar()
+    data = client.ipo_calendar()
 
 
 Get earnings calendar of stocks
@@ -398,7 +382,7 @@ Get earnings calendar of stocks
 
 .. code-block::
 
-    df = discover.earnings_calendar(date_from="2022-01-01", date_to="2022-01-31")
+    data = client.earnings_calendar(date_from="2022-01-01", date_to="2022-01-31")
 
 +-----------+----------+---------+-----------------+
 | Params    | Required | Default | Description     |

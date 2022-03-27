@@ -2,7 +2,8 @@
 
 [![Downloads](https://pepy.tech/badge/stocksera)](https://pepy.tech/project/stocksera)
 
-This is the official API for Stocksera. Visit Stocksera at https://github.com/guanquann/Stocksera.
+This is the official API for Stocksera. Visit Stocksera at https://github.com/guanquann/Stocksera. 
+Sign up for free Stocksera API at https://stocksera.pythonanywhere.com/accounts/developers.
 
 ### Installation
 The package can easily be installed in your terminal by entering
@@ -13,16 +14,16 @@ pip install stocksera
 ### Import the package
 ```
 import stocksera
+
+# Sign up for free Stocksera API at https://stocksera.pythonanywhere.com/accounts/developers/
+client = stocksera.Client(api_key="YOUR API KEY")
 ```
 
 ### Get data from social media
-```
-social = stocksera.Social()
-```
 
 ##### Get total mentions/ mentions of a stock on wallstreetbets
 ```
-df = social.wsb_mentions(days=1, ticker="AAPL")
+data = client.wsb_mentions(days=1, ticker="AAPL")
 ```
 | Params  | Required | Default | Description     |
 | ------- | -------- | ------- | --------------- |
@@ -31,7 +32,7 @@ df = social.wsb_mentions(days=1, ticker="AAPL")
 
 ##### Get total number of puts/calls mentions on wallstreetbets
 ```
-df = social.wsb_options(days=1)
+data = client.wsb_options(days=1)
 ```
 | Params  | Required | Default | Description     |
 | ------- | -------- | ------- | --------------- |
@@ -39,7 +40,7 @@ df = social.wsb_options(days=1)
 
 ##### Get subreddit count on Reddit
 ```
-df = social.subreddit(days=50, ticker="GME")
+data = client.subreddit(days=50, ticker="GME")
 ```
 | Params  | Required | Default | Description     |
 | ------- | -------- | ------- | --------------- |
@@ -48,20 +49,17 @@ df = social.subreddit(days=50, ticker="GME")
 
 ##### Get current trending stocks/ ranking and watchlist count of a stock in stocktwits
 ```
-df = social.stocktwits(ticker="AAPL")
+data = client.stocktwits(ticker="AAPL")
 ```
 | Params  | Required | Default | Description     |
 | ------- | -------- | ------- | --------------- |
 | ticker  | No       |         | stock symbol    |
 
 ### Get stocks related data
-```
-stock = stocksera.Stock()
-```
 
 ##### Get SEC fillings of a stock
 ```
-df = stock.sec_fillings(ticker="AAPL", date_from="2022-01-01", date_to="2022-01-31")
+data = client.sec_fillings(ticker="AAPL", date_from="2022-01-01", date_to="2022-01-31")
 ```
 | Params    | Required | Default | Description     |
 | --------- | -------- | ------- | --------------- |
@@ -71,7 +69,7 @@ df = stock.sec_fillings(ticker="AAPL", date_from="2022-01-01", date_to="2022-01-
 
 ##### Get news sentiment of a stock
 ```
-df = stock.news_sentiment(ticker="AAPL")
+data = client.news_sentiment(ticker="AAPL")
 ```
 | Params  | Required | Default | Description     |
 | ------- | -------- | ------- | --------------- |
@@ -79,7 +77,7 @@ df = stock.news_sentiment(ticker="AAPL")
 
 ##### Get recent insider trading of all tickers/ insider trading of a stock
 ```
-df = stock.insider_trading(limit=500, ticker="AAPL", date_from="2022-01-01", date_to="2022-01-31")
+data = client.insider_trading(limit=500, ticker="AAPL", date_from="2022-01-01", date_to="2022-01-31")
 ```
 
 | Params    | Required | Default | Description     |
@@ -91,12 +89,12 @@ df = stock.insider_trading(limit=500, ticker="AAPL", date_from="2022-01-01", dat
 
 ##### Get recent insider trading analysis
 ```
-df = stock.latest_insider_trading_summary()
+data = client.latest_insider_trading_summary()
 ```
 
 ##### Get stocks with high short volume/ short volume of a stock
 ```
-df = stock.short_volume(ticker="AAPL", date_from="2022-01-01", date_to="2022-01-31")
+data = client.short_volume(ticker="AAPL", date_from="2022-01-01", date_to="2022-01-31")
 ```
 | Params    | Required | Default | Description     |
 | --------- | -------- | ------- | --------------- |
@@ -106,7 +104,7 @@ df = stock.short_volume(ticker="AAPL", date_from="2022-01-01", date_to="2022-01-
 
 ##### Get stocks with consistently high FTD/ FTD of a stock
 ```
-df = stock.ftd(ticker="AAPL", date_from="2022-01-01", date_to="2022-01-31")
+data = client.ftd(ticker="AAPL", date_from="2022-01-01", date_to="2022-01-31")
 ```
 | Params    | Required | Default | Description     |
 | --------- | -------- | ------- | --------------- |
@@ -116,20 +114,17 @@ df = stock.ftd(ticker="AAPL", date_from="2022-01-01", date_to="2022-01-31")
 
 ##### Get number of shares available and borrow fees of a stock
 ```
-df = stock.borrowed_shares(ticker="AAPL")
+data = client.borrowed_shares(ticker="AAPL")
 ```
 | Params    | Required | Default | Description     |
 | --------- | -------- | ------- | --------------- |
 | ticker    | No       | AAPL    | stock symbol    |
 
 ### Get government trades data
-```
-government = stocksera.Government()
-```
 
 #### Get all senate trades/ trades of a specific person/ trades of a specific ticker
 ```
-df = government.senate(ticker="AAPL", name="Thomas H Tuberville", date_from="2022-01-01", date_to="2022-01-31")
+data = client.senate(ticker="AAPL", name="Thomas H Tuberville", date_from="2022-01-01", date_to="2022-01-31")
 ```
 | Params    | Required | Default | Description     |
 | --------- | -------- | ------- | --------------- |
@@ -140,7 +135,7 @@ df = government.senate(ticker="AAPL", name="Thomas H Tuberville", date_from="202
 
 #### Get all house trades/ trades of a specific person/ trades of a specific ticker
 ```
-df = government.house(ticker="AAPL", name="Nancy Pelosi", state="CA", date_from="2022-01-01", date_to="2022-01-31")
+data = client.house(ticker="AAPL", name="Nancy Pelosi", state="CA", date_from="2022-01-01", date_to="2022-01-31")
 ```
 | Params    | Required | Default | Description     |
 | --------- | -------- | ------- | --------------- |
@@ -151,26 +146,20 @@ df = government.house(ticker="AAPL", name="Nancy Pelosi", state="CA", date_from=
 | date_to   | No       |         | YYYY-MM-DD      |
 
 ### Get ETF data
-```
-etf = stocksera.ETF()
-```
 
 ##### Get market indices
 ```
-df = etf.market_summary(market_type="snp500")
+data = client.market_summary(market_type="snp500")
 ```
 | Params       | Required | Default | Description              |
 | -------      | -------- | ------- | -------------------------|
 | market_type  | Yes      | snp500  | snp500/nasdaq100/dia/wsb |
 
 ### Get economic data
-```
-economy = stocksera.Economy()
-```
 
 ##### Get reverse repo
 ```
-df = economy.reverse_repo(days=100)
+data = client.reverse_repo(days=100)
 ```
 | Params  | Required | Default | Description     |
 | ------- | -------- | ------- | --------------- |
@@ -178,7 +167,7 @@ df = economy.reverse_repo(days=100)
 
 ##### Get daily treasury
 ```
-df = economy.daily_treasury(days=100)
+data = client.daily_treasury(days=100)
 ```
 | Params  | Required | Default | Description     |
 | ------- | -------- | ------- | --------------- |
@@ -186,12 +175,12 @@ df = economy.daily_treasury(days=100)
 
 ##### Get inflation
 ```
-df = economy.inflation()
+data = client.inflation()
 ```
 
 ##### Get initial jobless claims
 ```
-df = economy.jobless_claims(days=100)
+data = client.jobless_claims(days=100)
 ```
 | Params  | Required | Default | Description     |
 | ------- | -------- | ------- | --------------- |
@@ -199,35 +188,29 @@ df = economy.jobless_claims(days=100)
 
 ##### Get retail sales
 ```
-df = economy.retail_sales(days=100)
+data = client.retail_sales(days=100)
 ```
 | Params  | Required | Default | Description     |
 | ------- | -------- | ------- | --------------- |
 | days    | No       | 100     | number days ago |
 
 ### Get stock related news
-```
-news = stocksera.News()
-```
 
 ##### Get recent market news
 ```
-df = news.market_news()
+data = client.market_news()
 ```
 
 ##### Get trading halts
 ```
-df = news.trading_halts()
+data = client.trading_halts()
 ```
 
 ### Get other interesting data
-```
-discover = stocksera.Discover()
-```
 
 ##### Get Jim Cramer trades
 ```
-df = discover.jim_cramer(ticker="AAPL", segment="featured", call="buy")
+data = client.jim_cramer(ticker="AAPL", segment="featured", call="buy")
 ```
 
 | Params  | Required | Default | Description                        |
@@ -238,22 +221,22 @@ df = discover.jim_cramer(ticker="AAPL", segment="featured", call="buy")
 
 ##### Get stocks with high short interest
 ```
-df = discover.short_interest()
+data = client.short_interest()
 ```
 
 ##### Get stocks with low float
 ```
-df = discover.low_float()
+data = client.low_float()
 ```
 
 ##### Get upcoming and past IPOs
 ```
-df = discover.ipo_calendar()
+data = client.ipo_calendar()
 ```
 
 ##### Get earnings calendar of stocks
 ```
-df = discover.earnings_calendar(date_from="2022-01-01", date_to="2022-01-31")
+data = client.earnings_calendar(date_from="2022-01-01", date_to="2022-01-31")
 ```
 | Params    | Required | Default | Description     |
 | --------- | -------- | ------- | --------------- |
